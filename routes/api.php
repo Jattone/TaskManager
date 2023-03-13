@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +21,12 @@ Route::get('/health', function () {
     ]);
 });
 
+Route::get('tasks/status', [TaskController::class, 'tasksByStatus']);
+Route::get('tasks/assignee', [TaskController::class, 'tasksByAssignee']);
+
 Route::resources([
-    'users' => UserController::class,
+    'users'          => UserController::class,
+    'tasks'          => TaskController::class,
 ],[
     'except' => ['index', 'create', 'edit'],
     'missing' => function ()
@@ -31,3 +36,5 @@ Route::resources([
         ], 404);
     }
 ]);
+
+

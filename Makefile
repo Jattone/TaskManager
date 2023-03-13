@@ -14,9 +14,6 @@ key:
 migrate:
 	@$(SAIL) artisan migrate
 
-chown:
-	@$(SAIL) chown
-
 # Run migrations
 migrate-seed:
 	@$(SAIL) artisan migrate:fresh --seed -n --force

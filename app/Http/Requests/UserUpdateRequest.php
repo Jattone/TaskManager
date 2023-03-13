@@ -24,10 +24,10 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name"     => ["required", "string", "min:3"],
-            "email"    => ["required", "email", Rule::unique("users", "email")],
+            "name"     => ["required", "string", "min:3", "max:50"],
             "password" => ["required", "string"],
-            "role"     => [Rule::in(User::ROLES)],
+            "role"     => ["required", Rule::in(User::ROLES)],
+            "email"    => ["required", "email", Rule::unique("users", "email")],
         ];
     }
 }
