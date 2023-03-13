@@ -26,6 +26,7 @@ sail:
 		-w /opt \
 		laravelsail/php81-composer:latest \
 		composer install --ignore-platform-reqs
+		cp .env.example .env
 
 
 # Install backend

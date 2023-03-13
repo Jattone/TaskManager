@@ -148,7 +148,13 @@
 					"name": "Create task",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"name\": \"Test task\",\n    \"description\": \"The essence of the project is to create a simple CRUD RESTful API for task management.\",\n    \"status\": 2,\n    \"assignee\": 1\n}",
@@ -174,7 +180,13 @@
 					"name": "Show task",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{base_url}}{{base_endpoint}}/tasks/1",
 							"host": [
@@ -192,7 +204,13 @@
 					"name": "Update task",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"name\": \"Test task\",\n    \"description\": \"The essence of the project is to create a simple CRUD RESTful API for task management.\",\n    \"status\": 3,\n    \"assignee\": 1\n}",
@@ -219,7 +237,13 @@
 					"name": "Delete task",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{base_url}}{{base_endpoint}}/tasks/1",
 							"host": [
@@ -240,7 +264,13 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"assignee\": 1\n}",
@@ -270,7 +300,13 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"status\": 1\n}",

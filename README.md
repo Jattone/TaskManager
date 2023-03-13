@@ -129,7 +129,7 @@ ___
 ___
 **Request**
 
-- `POST /health`
+- `POST /users`
 
 
 - `curl --location --request POST 'localhost/api/users' \
@@ -320,18 +320,6 @@ ___
 
 ### **Health task**
 ___
-**Request**
-
-- `GET /health`
-
-
-- `curl --location --request GET 'localhost/api/health'`
-
-**Response**
-
-- `{
-  "healthy": true
-  }`
 
 ### **Show non-existing task**
 ___
@@ -347,27 +335,43 @@ ___
 - `{
   "message": "Resource not found."
   }`
-
-### **Update non-existing task**
+### **Search for a task by status**
 ___
 **Request**
 
-- `PUT /tasks/{id}`
+- `GET /tasks/status`
 
 
-- `curl --location --request PUT 'localhost/api/tasks/45454' \
+- `curl --location --request GET 'localhost/api/tasks/status' \
   --header 'Content-Type: application/json' \
   --data-raw '{
-  "name": "Test task",
-  "description": "The essence of the project is to create a simple CRUD RESTful API for task management.",
-  "status": 3,
-  "assignee": 1
+  "status": 1
   }'`
 
 **Response**
 
 - `{
-  "message": "Resource not found."
+  "message": "Search for a task by status successful.",
+  "tasks": [
+  {
+  "id": 9,
+  "assignee": 1,
+  "name": "illum et adipisci error",
+  "description": "Magnam natus aut consequatur rerum laudantium quis. At commodi quia provident animi sit ea. Voluptatem et eius qui dignissimos inventore reiciendis nam sunt. Qui nostrum sed saepe mollitia in nemo soluta.",
+  "status": 1,
+  "created_at": "2023-03-13 13:36:55",
+  "updated_at": "2023-03-13 13:36:55"
+  },
+  {
+  "id": 15,
+  "assignee": 5,
+  "name": "perferendis nihil repellendus repellat",
+  "description": "Explicabo saepe molestias qui. Molestiae maxime nihil reprehenderit sint et accusamus beatae. Accusamus voluptatem nobis provident quibusdam dolores enim cum. Recusandae iste iusto autem aliquid.",
+  "status": 1,
+  "created_at": "2023-03-13 13:36:56",
+  "updated_at": "2023-03-13 13:36:56"
+  }
+  ]
   }`
 
 ### **Search for a task by assignee**
@@ -417,44 +421,66 @@ ___
   }
   ]
   }`
-### **Search for a task by status**
+
+### **Update non-existing task**
 ___
 **Request**
 
-- `GET /tasks/status`
+- `PUT /tasks/{id}`
 
 
-- `curl --location --request GET 'localhost/api/tasks/status' \
+- `curl --location --request PUT 'localhost/api/tasks/45454' \
   --header 'Content-Type: application/json' \
   --data-raw '{
-  "status": 1
+  "name": "Test task",
+  "description": "The essence of the project is to create a simple CRUD RESTful API for task management.",
+  "status": 3,
+  "assignee": 1
   }'`
 
 **Response**
 
 - `{
-  "message": "Search for a task by status successful.",
-  "tasks": [
-  {
-  "id": 9,
-  "assignee": 1,
-  "name": "illum et adipisci error",
-  "description": "Magnam natus aut consequatur rerum laudantium quis. At commodi quia provident animi sit ea. Voluptatem et eius qui dignissimos inventore reiciendis nam sunt. Qui nostrum sed saepe mollitia in nemo soluta.",
-  "status": 1,
-  "created_at": "2023-03-13 13:36:55",
-  "updated_at": "2023-03-13 13:36:55"
-  },
-  {
-  "id": 15,
-  "assignee": 5,
-  "name": "perferendis nihil repellendus repellat",
-  "description": "Explicabo saepe molestias qui. Molestiae maxime nihil reprehenderit sint et accusamus beatae. Accusamus voluptatem nobis provident quibusdam dolores enim cum. Recusandae iste iusto autem aliquid.",
-  "status": 1,
-  "created_at": "2023-03-13 13:36:56",
-  "updated_at": "2023-03-13 13:36:56"
-  }
-  ]
+  "message": "Resource not found."
   }`
+
+### **Create task with incorrect data**
+___
+**Request**
+
+- `POST /tasks`
+
+
+- `curl --location --request POST 'localhost/api/tasks' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+  "name": "",
+  "description": "Th",
+  "status": 29,
+  "assignee": 21
+  }'`
+
+**Response**
+
+- `{
+  "message": "The name field is required. (and 3 more errors)",
+  "errors": {
+  "name": [
+  "The name field is required."
+  ],
+  "description": [
+  "The description field must be at least 3 characters."
+  ],
+  "status": [
+  "The selected status is invalid."
+  ],
+  "assignee": [
+  "The selected assignee is invalid."
+  ]
+  }
+  }`
+
 ### **Search for a task by status, if status is incorrect**
 ___
 **Request**
